@@ -2,10 +2,12 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="测测你在牛剑会是什么精神状态。24 道题，纯属娱乐。">
-<meta property="og:title" content="The College Tabloid · 牛剑精神状态测试">
-<title>The College Tabloid · 牛剑精神状态测试</title>
+<meta property="og:title" content="The College Tabloid · 牛剑精神状态大赏">
+<title>The College Tabloid · 牛剑精神状态大赏</title>
 <style>
 @font-face{font-family:"Playfair Display";font-weight:900;font-display:swap;src:url(fonts/playfair-display-latin-900-normal.woff2) format("woff2")}
 @font-face{font-family:"Playfair Display";font-weight:900;font-style:italic;font-display:swap;src:url(fonts/playfair-display-latin-900-italic.woff2) format("woff2")}
@@ -26,9 +28,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .app::before{content:"";position:absolute;inset:0;z-index:-1;background:
   url("assets/tex_paper.jpg") center/600px repeat,
   radial-gradient(ellipse at 20% 10%,rgba(255,255,255,.35),transparent 60%),
-  radial-gradient(ellipse at 85% 90%,rgba(120,80,30,.18),transparent 55%),var(--paper)}
+  radial-gradient(ellipse at 85% 90%,rgba(120,80,30,.18),transparent 55%)}
 .grain{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.35;mix-blend-mode:multiply}
-.screen{position:relative;z-index:1;min-height:100dvh;padding:18px 18px 28px;display:none}
+.screen{position:relative;z-index:1;min-height:100dvh;padding:44px 18px 28px;display:none}
 .screen.on{display:block}
 /* torn paper + halftone */
 .torn{position:relative}
@@ -95,7 +97,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* result card (3:4) */
 .cardwrap{position:relative;margin:8px auto 0;width:100%;max-width:444px}
 .card{position:relative;width:100%;aspect-ratio:3/4;container-type:inline-size;overflow:hidden;background:var(--paper);isolation:isolate}
-.card::before{content:"";position:absolute;inset:0;z-index:-1;background:url("assets/tex_paper.jpg") center/cover,radial-gradient(ellipse at 15% 8%,rgba(255,255,255,.4),transparent 55%),radial-gradient(ellipse at 90% 95%,rgba(120,80,30,.2),transparent 55%),var(--paper)}
+.c-tex{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;pointer-events:none}
+.card::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 15% 8%,rgba(255,255,255,.4),transparent 55%),radial-gradient(ellipse at 90% 95%,rgba(120,80,30,.2),transparent 55%)}
 .c-mast{position:absolute;left:5cqw;right:5cqw;top:4.5cqw;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:.5cqw solid var(--ink);padding-bottom:1.6cqw}
 .c-mast .l{font:900 5.6cqw/0.9 var(--f-mast);white-space:nowrap;text-transform:uppercase;letter-spacing:-.1cqw}
 .c-mast .l .the{color:var(--red)}
@@ -141,7 +144,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .mascot{position:relative}
 .mascot img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 .mascot svg.ghost{position:absolute;inset:0;width:100%;height:100%}
-.mascot.has-img svg.ghost{display:none}
+.mascot svg.ghost,.mascot .prop{visibility:hidden}
+.mascot.no-img svg.ghost,.mascot.no-img .prop{visibility:visible}
 .mascot .prop{position:absolute;right:8%;bottom:16%;font-size:24cqw;line-height:1;filter:grayscale(.2) drop-shadow(1px 2px 0 rgba(0,0,0,.25))}
 .land-hero .mascot .prop{font-size:64px}
 .float{animation:float 3.6s ease-in-out infinite}
@@ -175,7 +179,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .tile.gold{box-shadow:inset 0 0 0 3px var(--gold)}
 .tile.gold .cd{color:var(--gold)}
 .back{margin-top:16px;font:13px var(--f-type);letter-spacing:.14em;color:var(--mute)}
-.mute{position:fixed;bottom:calc(14px + env(safe-area-inset-bottom));right:max(12px,calc(50vw - 228px));z-index:80;display:flex;align-items:center;gap:6px;padding:9px 14px 9px 12px;background:var(--red);color:#F6EFE2;font:13px var(--f-type);letter-spacing:.08em;transform:rotate(-3deg);box-shadow:2px 3px 0 rgba(0,0,0,.25)}
+.mute{position:fixed;top:calc(8px + env(safe-area-inset-top));left:50%;transform:translateX(-50%) rotate(-2deg);z-index:80;display:flex;align-items:center;gap:5px;padding:5px 11px 5px 9px;background:var(--red);color:#F6EFE2;font:11px var(--f-type);letter-spacing:.08em;box-shadow:1px 2px 0 rgba(0,0,0,.25)}
 .mute.off{background:var(--ink)}
 .mute i{font-style:normal;font-size:16px}
 #s-land .a-stamp{animation-duration:1s}#s-land .a-paste{animation-duration:.8s}#s-land .a-slap{animation-duration:.9s}
@@ -191,9 +195,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @keyframes swing{0%,100%{transform:rotate(5deg)}50%{transform:rotate(-2deg)}}
 /* overlays */
 .extra{position:fixed;left:50%;top:38%;width:140%;margin-left:-70%;z-index:50;padding:14px 0;text-align:center;color:var(--ink);background:var(--gold);font:900 italic 40px var(--f-mast);letter-spacing:.04em;transform:rotate(-8deg) translateX(-120%);pointer-events:none}
-.extra.go{animation:sweep 1.5s cubic-bezier(.2,.8,.2,1) forwards}
+.extra.go{animation:sweep 3.2s cubic-bezier(.2,.8,.2,1) forwards}
 .bigstamp{position:fixed;left:50%;top:45%;z-index:50;padding:10px 22px;border:5px solid var(--red);color:var(--red);font:900 44px var(--f-mast);background:rgba(239,230,214,.9);transform:translate(-50%,-50%) rotate(-10deg) scale(3);opacity:0;pointer-events:none}
-.bigstamp.go{animation:stamp .55s cubic-bezier(.3,1.6,.5,1) forwards}
+.bigstamp.go{animation:stamp 1.4s cubic-bezier(.3,1.6,.5,1) forwards}
 .toast{position:fixed;left:50%;bottom:28px;z-index:60;transform:translateX(-50%);padding:10px 16px;background:var(--ink);color:#F6EFE2;font:14px var(--f-cn);opacity:0;transition:opacity .3s;pointer-events:none;max-width:86%;text-align:center}
 .toast.on{opacity:1}
 .modal{position:fixed;inset:0;z-index:70;background:rgba(20,18,16,.85);display:none;align-items:center;justify-content:center;padding:20px;flex-direction:column;gap:10px}
@@ -237,7 +241,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     <div style="font:11px/1.4 var(--f-type);margin-top:8px">A Personality Test<br>for Overthinking Teens.</div></div>
     <div class="meta">LATE NIGHT EDITION<br>100% UNOFFICIAL<br>0% ACADEMIC<br>EST. 2026<div class="hand" style="font-size:17px;margin-top:6px;transform:rotate(-6deg)">Same students.<br>Different delusions.</div></div>
   </div>
-  <div class="sub-cn cream torn" data-tear="1">牛剑精神状态测试 · 万圣节特刊</div>
+  <div class="sub-cn cream torn" data-tear="1">牛剑精神状态大赏 · 万圣节特刊</div>
   <div class="land-hero">
     <div class="blob red torn a-paste" data-tear="3" style="animation-delay:0.44s"></div>
     <div class="blk ht torn a-paste" data-tear="2" style="animation-delay:0.68s"></div>
@@ -257,7 +261,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 <!-- QUIZ -->
 <section class="screen" id="s-quiz">
-  <div class="mast"><div class="logo" style="font-size:24px"><span class="the">The</span>College Tabloid</div><div class="meta">牛剑精神状态测试<br>EST. 2026</div></div>
+  <div class="mast"><div class="logo" style="font-size:24px"><span class="the">The</span>College Tabloid</div><div class="meta">牛剑精神状态大赏<br>EST. 2026</div></div>
   <div class="qtop"><span class="edition red" id="q-ed">LATE NIGHT EDITION</span><span class="qno" id="q-no">01 / 24</span></div>
   <div class="bar"><i id="q-bar" style="width:0"></i></div>
   <div class="qcard" id="q-card"></div>
@@ -298,240 +302,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 <div class="extra" id="extra">EXTRA! EXTRA!</div>
 <div class="bigstamp" id="bigstamp">BREAKING</div>
 <div class="toast" id="toast"></div>
-<div class="modal" id="modal"><img id="modal-img" alt="分享卡"><p id="modal-tip">长按图片保存到相册，或截图分享</p><button id="b-close">关闭</button></div>
+<div class="modal" id="modal"><img id="modal-img" alt="分享卡"><p id="modal-tip">长按图片保存到相册，或截图分享</p><button id="b-share" style="display:none">分享 / 存到相册</button><button id="b-close">关闭</button></div>
 </div>
 
-<script src="data.js"></script>
-<script src="js/html-to-image.js"></script>
+<script src="data.js?v=10180018"></script>
+<script src="js/html-to-image.js?v=10180018"></script>
 <script>
-(function(){
-const D=window.DATA, CODES=Object.keys(D.P), $=s=>document.querySelector(s);
-const PROP={NAP:"💤",BUG:"🔍",IDK:"❓",DDL:"⏳","404":"👾","CV+":"📸",OMG:"❗",AFK:"🎧",TBD:"🎓",XLS:"📋",BGM:"☔",TEA:"🍵",BEAR:"🐻",DEER:"🦌",ZZZ:"⚖️",LURK:"👀",PLAN:"🗂️",CHAOS:"🌀"};
-const FILE=c=>"assets/mascot_"+c.toLowerCase().replace("+","plus")+".webp";
-const TIER={reg:"常见款",max:"稀有 · SR",follow:"隐藏 · SSR",combo:"传说 · UR",chaos:"隐藏 · SSR"};
-
-/* ---------- storage (safe) ---------- */
-const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
-let got=new Set(store.get("ct_collect",[]));
-
-/* ---------- torn paper clip ---------- */
-function rng(seed){let s=seed*9301+49297;return()=>((s=(s*9301+49297)%233280)/233280)}
-function tornPath(seed,amp){const r=rng(seed),pts=[],n=18,a=amp;
-  for(let i=0;i<=n;i++)pts.push([i/n*100,r()*a]);
-  for(let i=0;i<=n*0.4;i++)pts.push([100-r()*a,i/(n*.4)*100]);
-  for(let i=n;i>=0;i--)pts.push([i/n*100,100-r()*a]);
-  for(let i=n*0.4;i>=0;i--)pts.push([r()*a,i/(n*.4)*100]);
-  return"polygon("+pts.map(p=>p[0].toFixed(1)+"% "+p[1].toFixed(1)+"%").join(",")+")"}
-function tear(root){(root||document).querySelectorAll(".torn").forEach((el,i)=>{const t=+el.dataset.tear||1;el.style.clipPath=tornPath(i*7+t*13+3,t===3?9:t===2?6:3)})}
-
-/* ---------- mascot ---------- */
-function ghostSVG(){return`<svg class="ghost" viewBox="0 0 200 200"><defs><pattern id="hd" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.3" fill="#1B1916" opacity=".35"/></pattern></defs>
-<path d="M50 175 C45 120 40 70 70 45 C95 25 130 28 148 55 C165 80 160 130 158 175 L145 162 L132 178 L118 163 L104 179 L90 163 L76 179 L62 163 Z" fill="#F7F3EA" stroke="#1B1916" stroke-width="4" stroke-linejoin="round"/>
-<path d="M120 50 C150 60 158 120 156 172 L145 162 L132 178 L130 120 Z" fill="url(#hd)"/>
-<ellipse cx="88" cy="88" rx="9" ry="15" fill="#1B1916"/><ellipse cx="120" cy="88" rx="9" ry="15" fill="#1B1916"/></svg>`}
-function mascot(el,code){el.classList.add("mascot");el.innerHTML=ghostSVG()+`<span class="prop">${PROP[code]||""}</span>`;
-  const im=new Image();im.alt="";im.onload=()=>{el.classList.add("has-img");el.querySelector(".prop").remove();el.prepend(im)};im.src=FILE(code)}
-
-/* ---------- state ---------- */
-let order=[], ans=[], idx=0, flags={}, fuPending=null;
-function buildOrder(){order=[];D.Q.forEach((q,i)=>{order.push({t:"q",i});const f=D.FU[String(i+1)];if(f)order.push({t:"f",i,f,code:f.code})})}
-function visible(){return order.filter(s=>s.t==="q"||(s.t==="f"&&ans[s.i]===s.f.trigger))}
-
-/* ---------- screens ---------- */
-function show(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("on"));$(id).classList.add("on");window.scrollTo(0,0)}
-let toastT=null;function toast(m,ms){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("on"),ms||3800)}
-function circle(){const r=rng(Math.random()*1000|0);const w=100,h=100;return`<svg class="circ" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M${4+r()*3} ${50+r()*8} C ${2} ${10}, ${70} ${-2+r()*6}, ${97} ${30+r()*8} S ${80} ${102}, ${30} ${95} S ${-2} ${70}, ${12} ${18+r()*8}"/></svg>`}
-
-function renderQ(dir){
-  const vis=visible(), step=vis[idx]; if(!step) return finish();
-  const total=D.Q.length, qi=step.i, card=$("#q-card");
-  $("#q-no").textContent=String(qi+1).padStart(2,"0")+" / "+total;
-  $("#q-bar").style.width=((qi+(step.t==="f"?1:0))/total*100)+"%";
-  $("#b-prev").disabled=idx===0;
-  const eds=["LATE NIGHT EDITION","MORNING EDITION","WEEKEND SPECIAL","EVENING POST","HALLOWEEN SPECIAL"];
-  $("#q-ed").textContent=step.t==="f"?"STOP THE PRESS":eds[qi%eds.length];
-  let html="";
-  if(step.t==="q"){const q=D.Q[qi];
-    const big=(q.t.match(/\d{1,2}:\d{2}/)||[null])[0];
-    html=`<div class="qbig">${big?big+(qi===0?" a.m.":""):"No."+String(qi+1).padStart(2,"0")}</div>
-    <div class="qtitle">${q.t}</div>
-    ${q.s?`<div class="qsub cream torn" data-tear="1">${q.s.replace(/「(.+?)」/,(m,x)=>/[a-zA-Z]/.test(x)?`<em>“${x}”</em>`:m)}</div>`:""}
-    <div class="opts">${q.o.map((o,k)=>`<div class="optw a-paste" style="animation-delay:${.12+k*.08}s"><button class="opt cream torn ${ans[qi]===k?"sel":""}" data-tear="1" data-k="${k}" style="animation-delay:${.12+k*.08}s"><span class="k red">${"ABCD"[k]}</span><span>${o.x}</span></button>${circle()}</div>`).join("")}</div>`;
-  }else{const f=step.f, cur=flags[f.code+"_k"];
-    html=`<div class="fu-stamp a-stamp">WAIT—</div><div class="qbig">${f.title}</div><div class="qtitle">${f.q}</div>
-    <div class="opts">${f.opts.map((o,k)=>`<div class="optw a-paste" style="animation-delay:${.25+k*.08}s"><button class="opt cream torn ${cur===k?"sel":""}" data-tear="1" data-k="${k}" style="animation-delay:${.25+k*.08}s"><span class="k" style="background:var(--ink)">${"ABCD"[k]}</span><span>${o}</span></button>${circle()}</div>`).join("")}</div>`;
-  }
-  const doIt=()=>{if(step.t==="f")setTimeout(()=>SFX.stamp(),80);card.className="qcard "+(step.t==="f"?"a-shake":"a-slap");card.innerHTML=html;tear(card);
-    card.querySelectorAll(".opt").forEach(b=>b.onclick=()=>pick(step,+b.dataset.k,b))};
-  if(dir&&card.innerHTML){SFX.rip();card.className="qcard a-tear";setTimeout(doIt,230)}else doIt();
-}
-let lock=false;
-function pick(step,k,btn){if(lock)return;lock=true;SFX.scribble();
-  btn.closest(".opts").querySelectorAll(".opt").forEach(o=>o.classList.remove("sel"));btn.classList.add("sel");
-  if(step.t==="q"){ans[step.i]=k}else{flags[step.f.code+"_k"]=k;flags[step.f.code]=step.f.win.includes(k)}
-  setTimeout(()=>{lock=false;idx++;renderQ(1)},680)}
-$("#b-prev").onclick=()=>{if(idx>0){idx--;renderQ(1)}};
-
-function start(){SFX.init();SFX.bgmStart();SFX.duck(.35);buildOrder();ans=[];flags={};idx=0;show("#s-quiz");$("#q-card").innerHTML="";renderQ(0)}
-
-/* ---------- scoring ---------- */
-function score(){const sc={},last={};CODES.forEach(c=>{sc[c]=0;last[c]=-1});
-  D.Q.forEach((q,i)=>{const k=ans[i];if(k==null)return;const p=q.o[k].p;sc[p]++;last[p]=i});
-  const top=[...CODES].sort((a,b)=>sc[b]-sc[a]||last[b]-last[a]);return{sc,top}}
-function judge(){const{sc,top}=score();
-  if(flags.BEAR)return{code:"BEAR",kind:"follow",sc,top};
-  if(flags.DEER)return{code:"DEER",kind:"follow",sc,top};
-  const a=top[0],b=top[1];
-  for(const k in D.H){const h=D.H[k];if(h.kind==="combo"&&h.pair.includes(a)&&h.pair.includes(b)&&sc[a]>=5&&sc[b]>=5)return{code:k,kind:"combo",sc,top}}
-  if(sc[a]>=7)return{code:a,kind:"max",sc,top};
-  if(sc[a]<=3)return{code:"CHAOS",kind:"chaos",sc,top};
-  return{code:a,kind:"reg",sc,top}}
-function info(code,kind){
-  if(kind==="reg")return{...D.P[code],code,label:code};
-  if(kind==="max"){const m=D.MAX[code],p=D.P[code];return{...p,code,label:code,name:m[0],line:m[1],atk:Math.min(100,p.atk+10),am:p.am,hl:p.hl}}
-  return{...D.H[code],code,label:code}}
-
-/* ---------- result card ---------- */
-function cardHTML(r){const I=info(r.code,r.kind),lab=r.code==="CHAOS"?"???":r.code;
-  const letters=[...lab].map((ch,i)=>`<span class="rn torn v${(i+I.n)%5} a-let" data-tear="1" style="animation-delay:${.55+i*.22}s">${ch}</span>`).join("")+`<span class="dot a-let" style="animation-delay:${.55+lab.length*.22}s"></span>`;
-  const kick=r.kind==="reg"?`BREAKING NEWS / NO. ${String(I.n).padStart(3,"0")}`:r.kind==="max"?`EXTRA! / ULTIMATE FORM`:`SPECIAL EDITION / NO. ${String(I.n).padStart(3,"0")}`;
-  const name=r.kind==="max"?`${I.name}`:I.name;
-  const hlTop=((I.name+(r.kind==="max"?" · MAX":"")).replace(/[ a-zA-Z]/g,"").length+(I.name.match(/[a-zA-Z]/g)||[]).length*.5>8.5?56:49)+"cqw";
-  return`<div class="c-mast"><div class="l"><span class="the">The </span>College Tabloid</div><div class="r">牛剑精神状态测试<br>EST. 2026</div></div>
-  <div class="c-kick ${r.kind==="reg"?"red":"ht"} torn a-stamp" data-tear="1" style="animation-delay:0.24s">${kick}</div>
-  ${r.kind!=="reg"?`<div class="c-tier a-stamp" style="animation-delay:1.44s">${TIER[r.kind]}</div>`:""}
-  <div class="c-blob red torn" data-tear="3"></div><div class="c-blk ht torn" data-tear="2"></div>
-  <img class="c-chapel" src="assets/bg_chapel.webp" alt="" onerror="this.remove()">
-  <div class="c-mascot float" id="c-m"></div>
-  <div class="c-code ${lab.length>3?"long":""}">${letters}</div>
-  <div class="c-name a-up" style="animation-delay:1.28s">${name}${r.kind==="max"?" · MAX":""}</div>
-  <div class="c-hl a-up" style="--hlTop:${hlTop};animation-delay:1.52s">“${I.hl}”</div>
-  <div class="c-dek cream torn a-paste" data-tear="1" style="animation-delay:1.68s">${I.line}</div>
-  <div class="c-stats a-up" style="animation-delay:1.92s">
-    <div class="c-stat torn" data-tear="1"><div class="lb">学术攻击力</div><div class="v"><b class="cnt" data-to="${I.atk}">0</b><small>/100</small></div></div>
-    <div class="c-stat torn" data-tear="1"><div class="lb">早八存活率</div><div class="v"><b class="cnt" data-to="${I.am}">0</b><small>/100</small></div></div>
-    <div class="c-stat torn" data-tear="1"><div class="lb">隐藏技能</div><div class="t">${I.skill}</div></div>
-    <div class="c-stat torn" data-tear="1"><div class="lb">致命弱点</div><div class="t">${I.weak}</div></div>
-  <div class="c-cmt"><div class="lb">THE COMMITTEE SAYS · 学院委员会最终评语</div><p>「${I.cmt}」</p></div>
-  </div>
-  <div class="c-sticky a-slap" style="animation-delay:2.48s">I'm <b>${lab}.</b>You?</div>
-  <div class="c-foot">精神故乡：<b>${I.college}</b> · ${I.home}<span>虚构娱乐测试，与学院真实招生及录取判断无关</span></div>`}
-function countUp(root){root.querySelectorAll(".cnt").forEach(el=>{const to=+el.dataset.to,t0=performance.now()+2000,d=1200;
-  const f=now=>{const p=Math.max(0,Math.min(1,(now-t0)/d));el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)})}
-
-let lastR=null;
-function finish(){show("#s-print");SFX.duck(.12);
-  const r=judge(), code=r.code==="CHAOS"?"???":r.code;
-  const lines=["LATE EDITION — HOLD THE PRESS","Reading your 24 answers...","Interviewing your roommate...","Consulting the college cat...","Headline approved.",">>> YOU ARE: "+code+(r.kind==="max"?" (MAX)":"")];
-  const feed=$("#feed"), ding=$("#ding");feed.innerHTML="";feed.style.transform="translateY(0)";ding.classList.remove("on");
-  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let li=0;
-  function nextLine(){
-    if(li>=lines.length){ding.classList.add("on");SFX.ding();setTimeout(()=>reveal(r),reduce?200:1200);return}
-    const txt=lines[li], el=document.createElement("div");el.className="ln"+(li===lines.length-1?" hl":"");
-    const caret=document.createElement("span");caret.className="caret";el.appendChild(caret);feed.appendChild(el);
-    feed.style.transform="translateY(0)";
-    let ci=0;const speed=li===lines.length-1?120:48;
-    (function type(){
-      if(ci<txt.length){caret.insertAdjacentText("beforebegin",txt[ci++]);if(txt[ci-1]!==" ")SFX.key();setTimeout(type,reduce?0:speed+Math.random()*30)}
-      else{caret.remove();li++;SFX.carriage();setTimeout(nextLine,reduce?0:(li===lines.length-1?700:380))}
-    })();
-  }
-  setTimeout(nextLine,250);
-}
-function reveal(r){lastR=r;show("#s-result");setTimeout(()=>SFX.duck(.3),1800);
-  const card=$("#card");card.className="card"+(r.kind==="max"?" gold":"")+(["follow","combo","chaos"].includes(r.kind)?" secret":"");
-  card.innerHTML=cardHTML(r);tear(card);mascot($("#c-m"),r.code);countUp(card);
-  const key=r.kind==="max"?r.code+"·MAX":r.code, isNew=!got.has(key);got.add(key);store.set("ct_collect",[...got]);updateN();
-  const bs=$("#bigstamp");bs.textContent=r.kind==="reg"?"BREAKING":"EXTRA!";bs.classList.remove("go");void bs.offsetWidth;bs.classList.add("go");setTimeout(()=>SFX.stamp(),220);[...(r.code==="CHAOS"?"???":r.code)].forEach((c,i)=>setTimeout(()=>SFX.pat(),550+i*220+120));
-  if(r.kind!=="reg"){const ex=$("#extra");ex.classList.remove("go");void ex.offsetWidth;setTimeout(()=>{ex.classList.add("go");SFX.extra()},600)}
-  const t3=r.top.slice(0,3);
-  $("#r-top3").innerHTML=`<h4>YOUR TOP 3 · 前三名人格</h4>`+t3.map(c=>`<div class="r-row"><span class="c">${c}</span><span class="b"><i data-w="${Math.round(r.sc[c]/8*100)}"></i></span><span class="p">${Math.round(r.sc[c]/8*100)}%</span></div>`).join("");
-  setTimeout(()=>$("#r-top3").querySelectorAll("i").forEach(i=>i.style.width=i.dataset.w+"%"),50);
-  const hidden=30-12, gotHidden=[...got].filter(k=>!D.P[k]).length;
-  $("#r-more").textContent=(isNew&&r.kind!=="reg"?"新解锁！":"")+`还有 ${hidden-gotHidden} 个隐藏款没见过`;
-}
-function updateN(){$("#collect-n").textContent=got.size;$("#atlas-n").textContent=got.size+" / 30"}
-
-/* ---------- atlas ---------- */
-function tile(key,code,name,locked,hint,gold){return`<div class="tile torn ${locked?"lock":""} ${gold?"gold":""}" data-tear="1"><div class="m" data-code="${code}"></div><div class="cd">${locked?"?":code==="CHAOS"?"???":key}</div><div class="nm">${locked?hint:name}</div></div>`}
-function renderAtlas(){const A=$("#atlas");let h=`<div class="atlas-sec">REGULAR · 常规人格 ×12</div><div class="grid">`;
-  CODES.forEach(c=>h+=tile(c,c,D.P[c].name,!got.has(c),"还没测到"));
-  h+=`</div><div class="atlas-sec">ULTIMATE FORM · 究极形态 ×12</div><div class="grid">`;
-  CODES.forEach(c=>h+=tile(c+"·MAX",c,D.MAX[c][0],!got.has(c+"·MAX"),"据说有人纯度百分之百",true));
-  h+=`</div><div class="atlas-sec">SPECIAL EDITION · 隐藏款 ×6</div><div class="grid">`;
-  Object.keys(D.H).forEach(k=>h+=tile(k,k,D.H[k].name,!got.has(k),D.H[k].hint));
-  A.innerHTML=h+"</div>";tear(A);A.querySelectorAll(".tile").forEach(t=>t.onclick=()=>toast(t.querySelector(".nm").textContent+(t.classList.contains("lock")?"":" ✓"),2600));A.querySelectorAll(".m").forEach(m=>mascot(m,m.dataset.code));
-  A.querySelectorAll(".tile .cd").forEach(el=>{if(el.textContent.includes("·MAX"))el.innerHTML=el.textContent.replace("·MAX","<small style='font-size:8px;display:block'>MAX</small>")});
-  updateN();show("#s-atlas")}
-let backTo="#s-land";
-
-/* ---------- save card ---------- */
-async function save(){const card=$("#card");
-  card.querySelectorAll("*").forEach(e=>{e.style.animation="none"});
-  card.querySelectorAll(".cnt").forEach(e=>e.textContent=e.dataset.to);
-  const showModal=(url)=>{const img=$("#modal-img"),tip=$("#modal-tip");
-    if(url){img.style.display="";img.src=url;tip.innerHTML="👆 长按上面的图片 → 保存到相册<br><small>电脑上会自动下载；没下载的话右键图片另存为</small>"}
-    else{img.style.display="none";tip.innerHTML="这个浏览器不支持一键保存 😢<br>请直接<b>截屏</b>结果卡分享<br><small>（用手机浏览器 / 微信打开链接效果最好）</small>"}
-    $("#modal").classList.add("on")};
-  if(!window.htmlToImage){showModal(null);return}
-  toast("正在印刷分享卡…",6000);
-  const w=card.offsetWidth,opt={pixelRatio:1080/w,cacheBust:true};let url=null;
-  try{url=await htmlToImage.toPng(card,opt)}catch(e){try{url=await htmlToImage.toPng(card,{...opt,skipFonts:true})}catch(e2){url=null}}
-  $("#toast").classList.remove("on");
-  showModal(url);
-  if(url&&!/MicroMessenger|xhsdiscover|iPhone|iPad|Android/i.test(navigator.userAgent)){try{const a=document.createElement("a");a.href=url;a.download="CollegeTabloid_"+(lastR?lastR.code:"card")+".png";document.body.appendChild(a);a.click();a.remove()}catch(e){}}
-}
-
-/* ---------- sound (Web Audio, synthesized) ---------- */
-const SFX=(()=>{let ctx=null,master=null,noiseBuf=null,muted=store.get("ct_mute",false);
-  function init(){if(ctx)return;try{ctx=new (window.AudioContext||window.webkitAudioContext)();master=ctx.createGain();master.gain.value=.55;master.connect(ctx.destination);
-    noiseBuf=ctx.createBuffer(1,ctx.sampleRate*1.5,ctx.sampleRate);const d=noiseBuf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1}catch(e){ctx=null}}
-  function ok(){if(muted||!ctx)return false;if(ctx.state==="suspended")ctx.resume();return true}
-  function noise(dur,{type="bandpass",f=2000,q=1,f2=null,vol=.5,att=.002,mod=0}={}){if(!ok())return;const t=ctx.currentTime,src=ctx.createBufferSource();src.buffer=noiseBuf;
-    const fl=ctx.createBiquadFilter();fl.type=type;fl.frequency.setValueAtTime(f,t);if(f2)fl.frequency.exponentialRampToValueAtTime(f2,t+dur);fl.Q.value=q;
-    const g=ctx.createGain();g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+att);g.gain.exponentialRampToValueAtTime(.001,t+dur);
-    if(mod){const l=ctx.createOscillator(),lg=ctx.createGain();l.frequency.value=mod;lg.gain.value=vol*.6;l.connect(lg);lg.connect(g.gain);l.start(t);l.stop(t+dur)}
-    src.connect(fl);fl.connect(g);g.connect(master);src.start(t,Math.random()*.5);src.stop(t+dur+.05)}
-  function tone(f,dur,{type="sine",vol=.3,f2=null,delay=0}={}){if(!ok())return;const t=ctx.currentTime+delay,o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+dur);
-    g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+.005);g.gain.exponentialRampToValueAtTime(.001,t+dur);o.connect(g);g.connect(master);o.start(t);o.stop(t+dur+.05)}
-  let bgmVol=.35,bgmOn=false,bgmNode=null,bgmGain=null,bgmBuf=null,bgmEl=null,bgmTried=false;
-  function loadBgm(){if(bgmTried)return;bgmTried=true;
-    fetch("assets/bgm.mp3").then(r=>{if(!r.ok)throw 0;return r.arrayBuffer()}).then(b=>ctx.decodeAudioData(b)).then(buf=>{bgmBuf=buf;playBgm()})
-    .catch(()=>{bgmEl=new Audio("assets/bgm.mp3");bgmEl.loop=true;bgmEl.volume=bgmVol;playBgm()})}
-  function edges(buf){const d=buf.getChannelData(0);let i=0,j=d.length-1;while(i<d.length&&Math.abs(d[i])<1e-4)i++;while(j>i&&Math.abs(d[j])<1e-4)j--;return[i/buf.sampleRate,j/buf.sampleRate]}
-  function playBgm(){if(muted||!bgmOn)return;
-    if(bgmBuf&&ctx){if(bgmNode)return;const[st,en]=edges(bgmBuf);bgmGain=ctx.createGain();bgmGain.gain.value=0;bgmGain.gain.linearRampToValueAtTime(bgmVol,ctx.currentTime+1.5);bgmGain.connect(master);
-      bgmNode=ctx.createBufferSource();bgmNode.buffer=bgmBuf;bgmNode.loop=true;bgmNode.loopStart=st;bgmNode.loopEnd=en;bgmNode.connect(bgmGain);bgmNode.start(0,st);return}
-    if(bgmEl)bgmEl.play().catch(()=>{});}
-  function stopBgm(){if(bgmNode){try{bgmNode.stop()}catch(e){}bgmNode=null}if(bgmEl)bgmEl.pause()}
-  return{init,bgmStart(){bgmOn=true;if(!ctx)init();if(ctx)loadBgm();playBgm()},duck(v){bgmVol=v;try{if(bgmGain)bgmGain.gain.linearRampToValueAtTime(v,ctx.currentTime+.6);if(bgmEl)bgmEl.volume=v}catch(e){}},get muted(){return muted},toggle(){muted=!muted;store.set("ct_mute",muted);if(muted)stopBgm();else{init();this.key();playBgm()}return muted},
-    key(){noise(.035,{f:2600+Math.random()*900,q:3,vol:.35});tone(180,.03,{type:"square",vol:.04})},
-    carriage(){noise(.18,{f:900,f2:2500,q:1,vol:.25});noise(.03,{f:3500,q:4,vol:.4})},
-    ding(){tone(2093,1.2,{vol:.22});tone(4186,.8,{vol:.06})},
-    scribble(){noise(.42,{f:1700,q:.9,vol:.09,att:.06,mod:7})},
-    rip(){noise(.24,{type:"lowpass",f:2600,f2:700,q:.5,vol:.12,att:.04});noise(.08,{f:3200,q:1.2,vol:.04,att:.01})},
-    stamp(){tone(130,.22,{f2:45,vol:.6});noise(.12,{type:"lowpass",f:700,vol:.6})},
-    pat(){noise(.06,{type:"lowpass",f:1500,vol:.45});tone(220,.05,{vol:.08})},
-    extra(){[523,659,784,1046].forEach((f,i)=>tone(f,.22,{type:"sawtooth",vol:.07,delay:i*.09}));noise(.5,{f:3000,q:.6,vol:.1,f2:6000})}}
-})();
-/* ---------- wire ---------- */
-$("#b-start").onclick=start;
-const setMute=m=>{const b=$("#b-mute");b.innerHTML=m?"<i>🔇</i>SOUND OFF":"<i>🔊</i>SOUND ON";b.classList.toggle("off",m)};setMute(SFX.muted);$("#b-mute").onclick=()=>setMute(SFX.toggle());
-document.addEventListener("pointerdown",()=>SFX.init(),{once:true});
-$("#b-again").onclick=start;
-$("#b-atlas").onclick=()=>{backTo="#s-land";renderAtlas()};
-$("#b-atlas2").onclick=()=>{backTo="#s-result";renderAtlas()};
-$("#b-back").onclick=()=>show(backTo);
-$("#b-save").onclick=save;
-$("#b-close").onclick=()=>$("#modal").classList.remove("on");
-document.querySelectorAll(".mascot[data-code]").forEach(m=>mascot(m,m.dataset.code));
-tear();updateN();
-/* debug: ?r=NAP or ?r=NAP&k=max */
-const qs=new URLSearchParams(location.search);if(qs.get("r")){const c=qs.get("r"),k=qs.get("k")||(D.P[c]?"reg":D.H[c].kind);const sc={};CODES.forEach(x=>sc[x]=1);if(D.P[c])sc[c]=k==="max"?7:5;reveal({code:c,kind:k,sc,top:[...CODES].sort((a,b)=>sc[b]-sc[a])})}
-if(qs.get("s")==="quiz")start();
-if(qs.get("s")==="atlas")renderAtlas();
-})();
+window.DATA=JSON.parse((new TextDecoder).decode(Uint8Array.from(atob(window.__T),((V,t)=>V.charCodeAt(0)^"ykweetGrtcnorlvQXnfwdIr".charCodeAt(t%23))))),delete window.__T,function(){const V=window.DATA,t=Object.keys(V.P),e=V=>document.querySelector(V),a={NAP:"💤",BUG:"🔍",IDK:"❓",DDL:"⏳",404:"👾","CV+":"📸",OMG:"❗",AFK:"🎧",TBD:"🎓",XLS:"📋",BGM:"☔",TEA:"🍵",BEAR:"🐻",DEER:"🦌",ZZZ:"⚖️",LURK:"👀",PLAN:"🗂️",CHAOS:"🌀"},n=V=>"assets/mascot_"+V.toLowerCase().replace("+","plus")+".webp",s={reg:"常见款",max:"稀有 · SR",follow:"隐藏 · SSR",combo:"传说 · UR",chaos:"隐藏 · SSR"},o={get(V,t){try{const e=localStorage.getItem(V);return e?JSON.parse(e):t}catch(V){return t}},set(V,t){try{localStorage.setItem(V,JSON.stringify(t))}catch(V){}}};let c=new Set(o.get("ct_collect",[]));function l(V){let t=9301*V+49297;return()=>(t=(9301*t+49297)%233280)/233280}function i(V){(V||document).querySelectorAll(".torn").forEach(((V,t)=>{const e=+V.dataset.tear||1;V.style.clipPath=function(V,t){const e=l(V),a=[],n=18,s=t;for(let V=0;V<=n;V++)a.push([V/n*100,e()*s]);for(let V=0;V<=7.2;V++)a.push([100-e()*s,V/7.2*100]);for(let V=n;V>=0;V--)a.push([V/n*100,100-e()*s]);for(let V=7.2;V>=0;V--)a.push([e()*s,V/7.2*100]);return"polygon("+a.map((V=>V[0].toFixed(1)+"% "+V[1].toFixed(1)+"%")).join(",")+")"}(7*t+13*e+3,3===e?9:2===e?6:3)}))}function r(V,t){V.classList.add("mascot"),V.innerHTML=`<svg class="ghost" viewBox="0 0 200 200"><defs><pattern id="hd" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.3" fill="#1B1916" opacity=".35"/></pattern></defs>\n<path d="M50 175 C45 120 40 70 70 45 C95 25 130 28 148 55 C165 80 160 130 158 175 L145 162 L132 178 L118 163 L104 179 L90 163 L76 179 L62 163 Z" fill="#F7F3EA" stroke="#1B1916" stroke-width="4" stroke-linejoin="round"/>\n<path d="M120 50 C150 60 158 120 156 172 L145 162 L132 178 L130 120 Z" fill="url(#hd)"/>\n<ellipse cx="88" cy="88" rx="9" ry="15" fill="#1B1916"/><ellipse cx="120" cy="88" rx="9" ry="15" fill="#1B1916"/></svg><span class="prop">${a[t]||""}</span>`;const e=new Image;e.alt="",e.onload=()=>{V.classList.add("has-img"),V.querySelector(".prop").remove(),V.prepend(e)},e.onerror=()=>V.classList.add("no-img"),e.src=n(t)}let d=[],A=[],u=0,m={},p={},f={},v=24;function h(V){for(let t=(V=V.slice()).length-1;t>0;t--){const e=Math.random()*(t+1)|0;[V[t],V[e]]=[V[e],V[t]]}return V}function g(V){document.querySelectorAll(".screen").forEach((V=>V.classList.remove("on"))),e(V).classList.add("on"),window.scrollTo(0,0)}let y=null;function T(V,t){const a=e("#toast");a.textContent=V,a.classList.add("on"),clearTimeout(y),y=setTimeout((()=>a.classList.remove("on")),t||3800)}function b(){const V=l(1e3*Math.random()|0);return`<svg class="circ" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M${4+3*V()} ${50+8*V()} C 2 10, 70 ${6*V()-2}, 97 ${30+8*V()} S 80 102, 30 95 S -2 70, 12 ${18+8*V()}"/></svg>`}function E(a){const n=d.filter((V=>"q"===V.t||"f"===V.t&&A[V.i]===V.f.trigger)),l=n[u];if(!l)return function(){g("#s-print"),C.duck(.12);const a=function(){const{sc:e,top:a}=function(){const e={},a={};t.forEach((V=>{e[V]=0,a[V]=-1})),V.Q.forEach(((V,t)=>{const n=A[t];if(null==n)return;const s=V.o[n].p;e[s]++,a[s]=t}));const n=[...t].sort(((V,t)=>e[t]-e[V]||(f[t]||0)-(f[V]||0)));return{sc:e,top:n}}();if(m.BEAR)return{code:"BEAR",kind:"follow",sc:e,top:a};if(m.DEER)return{code:"DEER",kind:"follow",sc:e,top:a};const n=a[0],s=a[1];for(const t in V.H){const o=V.H[t];if("combo"===o.kind&&o.pair.includes(n)&&o.pair.includes(s)&&e[n]>=5&&e[s]>=5)return{code:t,kind:"combo",sc:e,top:a}}return e[n]>=7?{code:n,kind:"max",sc:e,top:a}:e[n]<=3?{code:"CHAOS",kind:"chaos",sc:e,top:a}:{code:n,kind:"reg",sc:e,top:a}}(),n=["LATE EDITION — HOLD THE PRESS","Reading your 24 answers...","Interviewing your roommate...","Consulting the college cat...","Headline approved.",">>> YOU ARE: "+("CHAOS"===a.code?"???":a.code)+("max"===a.kind?" (MAX)":"")],l=e("#feed"),d=e("#ding");l.innerHTML="",l.style.transform="translateY(0)",d.classList.remove("on");const u=matchMedia("(prefers-reduced-motion: reduce)").matches;let p=0;function v(){if(p>=n.length)return d.classList.add("on"),C.ding(),void setTimeout((()=>function(t){w=t,g("#s-result"),setTimeout((()=>C.duck(.3)),1800);const a=e("#card");a.className="card"+("max"===t.kind?" gold":"")+(["follow","combo","chaos"].includes(t.kind)?" secret":""),a.innerHTML=function(t){const e=function(t,e){if("reg"===e){const e=V.P[t];return{...e,code:t,label:t,line:M(e.lines||e.line),cmt:M(e.cmts||e.cmt)}}if("max"===e){const e=V.MAX[t],a=V.P[t];return{...a,code:t,label:t,name:e[0],line:e[1],cmt:M(a.cmts||a.cmt),atk:Math.min(100,a.atk+10),am:a.am,hl:a.hl}}return{...V.H[t],code:t,label:t}}(t.code,t.kind),a="CHAOS"===t.code?"???":t.code,n=[...a].map(((V,t)=>`<span class="rn torn v${(t+e.n)%5} a-let" data-tear="1" style="animation-delay:${.55+.22*t}s">${V}</span>`)).join("")+`<span class="dot a-let" style="animation-delay:${.55+.22*a.length}s"></span>`,o="reg"===t.kind?`BREAKING NEWS / NO. ${String(e.n).padStart(3,"0")}`:"max"===t.kind?"EXTRA! / ULTIMATE FORM":`SPECIAL EDITION / NO. ${String(e.n).padStart(3,"0")}`,c="max"===t.kind?`${e.name}`:e.name,l=((e.name+("max"===t.kind?" · MAX":"")).replace(/[ a-zA-Z]/g,"").length+.5*(e.name.match(/[a-zA-Z]/g)||[]).length>8.5?56:49)+"cqw";return`<img class="c-tex" src="assets/tex_paper.jpg" alt=""><div class="c-mast"><div class="l"><span class="the">The </span>College Tabloid</div><div class="r">牛剑精神状态大赏<br>EST. 2026</div></div>\n  <div class="c-kick ${"reg"===t.kind?"red":"ht"} torn a-stamp" data-tear="1" style="animation-delay:0.24s">${o}</div>\n  ${"reg"!==t.kind?`<div class="c-tier a-stamp" style="animation-delay:1.44s">${s[t.kind]}</div>`:""}\n  <div class="c-blob red torn" data-tear="3"></div><div class="c-blk ht torn" data-tear="2"></div>\n  <img class="c-chapel" src="assets/bg_chapel.webp" alt="" onerror="this.remove()">\n  <div class="c-mascot float" id="c-m"></div>\n  <div class="c-code ${a.length>3?"long":""}">${n}</div>\n  <div class="c-name a-up" style="animation-delay:1.28s">${c}${"max"===t.kind?" · MAX":""}</div>\n  <div class="c-hl a-up" style="--hlTop:${l};animation-delay:1.52s">“${e.hl}”</div>\n  <div class="c-dek cream torn a-paste" data-tear="1" style="animation-delay:1.68s">${e.line}</div>\n  <div class="c-stats a-up" style="animation-delay:1.92s">\n    <div class="c-stat torn" data-tear="1"><div class="lb">学术攻击力</div><div class="v"><b class="cnt" data-to="${e.atk}">0</b><small>/100</small></div></div>\n    <div class="c-stat torn" data-tear="1"><div class="lb">早八存活率</div><div class="v"><b class="cnt" data-to="${e.am}">0</b><small>/100</small></div></div>\n    <div class="c-stat torn" data-tear="1"><div class="lb">隐藏技能</div><div class="t">${e.skill}</div></div>\n    <div class="c-stat torn" data-tear="1"><div class="lb">致命弱点</div><div class="t">${e.weak}</div></div>\n  <div class="c-cmt"><div class="lb">THE COMMITTEE SAYS · 学院委员会最终评语</div><p>「${e.cmt}」</p></div>\n  </div>\n  <div class="c-sticky a-slap" style="animation-delay:2.48s">I'm <b>${a}.</b>You?</div>\n  <div class="c-foot">精神故乡：<b>${e.college}</b> · ${e.home}<span>虚构娱乐测试，与学院真实招生及录取判断无关</span></div>`}(t),i(a),r(e("#c-m"),t.code),n=a,n.querySelectorAll(".cnt").forEach((V=>{const t=+V.dataset.to,e=performance.now()+2e3,a=1200,n=s=>{const o=Math.max(0,Math.min(1,(s-e)/a));V.textContent=Math.round(t*(1-Math.pow(1-o,3))),o<1&&requestAnimationFrame(n)};requestAnimationFrame(n)}));var n;const l="max"===t.kind?t.code+"·MAX":t.code,d=!c.has(l);c.add(l),o.set("ct_collect",[...c]),L();const A=e("#bigstamp");if(A.textContent="reg"===t.kind?"BREAKING":"EXTRA!",A.classList.remove("go"),A.offsetWidth,A.classList.add("go"),setTimeout((()=>C.stamp()),220),[..."CHAOS"===t.code?"???":t.code].forEach(((V,t)=>setTimeout((()=>C.pat()),550+220*t+120))),"reg"!==t.kind){const V=e("#extra");V.classList.remove("go"),V.offsetWidth,setTimeout((()=>{V.classList.add("go"),C.extra()}),1200)}const u=t.top.slice(0,3);e("#r-top3").innerHTML="<h4>YOUR TOP 3 · 前三名人格</h4>"+u.map((V=>`<div class="r-row"><span class="c">${V}</span><span class="b"><i data-w="${Math.round(t.sc[V]/8*100)}"></i></span><span class="p">${Math.round(t.sc[V]/8*100)}%</span></div>`)).join(""),setTimeout((()=>e("#r-top3").querySelectorAll("i").forEach((V=>V.style.width=V.dataset.w+"%"))),50);const m=18,p=[...c].filter((t=>!V.P[t])).length;e("#r-more").textContent=(d&&"reg"!==t.kind?"新解锁！":"")+`还有 ${m-p} 个隐藏款没见过`}(a)),u?200:1200);const t=n[p],A=document.createElement("div");A.className="ln"+(p===n.length-1?" hl":"");const m=document.createElement("span");m.className="caret",A.appendChild(m),l.appendChild(A),l.style.transform="translateY(0)";let f=0;const h=p===n.length-1?120:48;!function V(){f<t.length?(m.insertAdjacentText("beforebegin",t[f++])," "!==t[f-1]&&C.key(),setTimeout(V,u?0:h+30*Math.random())):(m.remove(),p++,C.carriage(),setTimeout(v,u?0:p===n.length-1?700:380))}()}setTimeout(v,250)}();const h=v,y=l.i,T=e("#q-card"),S=n.slice(0,u+1).filter((V=>"q"===V.t)).length;e("#q-no").textContent=String(S).padStart(2,"0")+" / "+h,e("#q-bar").style.width=(S-("f"===l.t?0:1))/h*100+"%",e("#b-prev").disabled=0===u;const $=["LATE NIGHT EDITION","MORNING EDITION","WEEKEND SPECIAL","EVENING POST","HALLOWEEN SPECIAL"];e("#q-ed").textContent="f"===l.t?"STOP THE PRESS":$[S%$.length];let q="";if("q"===l.t){const t=V.Q[y],e=(t.t.match(/\d{1,2}:\d{2}/)||[null])[0];q=`<div class="qbig">${e?e+(0===y?" a.m.":""):"No."+String(S).padStart(2,"0")}</div>\n    <div class="qtitle">${t.t}</div>\n    ${t.s?`<div class="qsub cream torn" data-tear="1">${t.s.replace(/「(.+?)」/,((V,t)=>/[a-zA-Z]/.test(t)?`<em>“${t}”</em>`:V))}</div>`:""}\n    <div class="opts">${p["q"+y].map(((V,e)=>{const a=t.o[V];return`<div class="optw a-paste" style="animation-delay:${.12+.08*e}s"><button class="opt cream torn ${A[y]===V?"sel":""}" data-tear="1" data-k="${V}" style="animation-delay:${.12+.08*V}s"><span class="k red">${"ABCD"[e]}</span><span>${a.x}</span></button>${b()}</div>`})).join("")}</div>`}else{const V=l.f,t=m[V.code+"_k"];q=`<div class="fu-stamp a-stamp">WAIT—</div><div class="qbig">${V.title}</div><div class="qtitle">${V.q}</div>\n    <div class="opts">${p["f"+y].map(((e,a)=>{const n=V.opts[e];return`<div class="optw a-paste" style="animation-delay:${.25+.08*a}s"><button class="opt cream torn ${t===e?"sel":""}" data-tear="1" data-k="${e}" style="animation-delay:${.25+.08*e}s"><span class="k" style="background:var(--ink)">${"ABCD"[a]}</span><span>${n}</span></button>${b()}</div>`})).join("")}</div>`}const x=()=>{"f"===l.t&&setTimeout((()=>C.stamp()),80),T.className="qcard "+("f"===l.t?"a-shake":"a-slap"),T.innerHTML=q,i(T),T.querySelectorAll(".opt").forEach((t=>t.onclick=()=>function(t,e,a){if(k)return;if(k=!0,C.scribble(),a.closest(".opts").querySelectorAll(".opt").forEach((V=>V.classList.remove("sel"))),a.classList.add("sel"),"q"===t.t){A[t.i]=e;const a=V.FU[String(t.i+1)];a&&e!==a.trigger&&(delete m[a.code],delete m[a.code+"_k"])}else m[t.f.code+"_k"]=e,m[t.f.code]=t.f.win.includes(e);setTimeout((()=>{k=!1,u++,E(1)}),680)}(l,+t.dataset.k,t)))};a&&T.innerHTML?(C.rip(),T.className="qcard a-tear",setTimeout(x,230)):x()}let k=!1;function S(){C.init(),C.bgmStart(),C.duck(.35),function(){d=[],p={},f={},t.forEach((V=>f[V]=Math.random()));const e=[0,2,3];let a=null;for(let n=0;n<400&&!a;n++){const n=h(V.Q.map(((V,t)=>t)).filter((V=>!e.includes(V)))).slice(0,24-e.length),s=[...e,...n],o={};s.forEach((t=>V.Q[t].o.forEach((V=>o[V.p]=(o[V.p]||0)+1)))),t.every((V=>(o[V]||0)>=7&&(o[V]||0)<=9))&&(a=s)}a||(a=V.Q.slice(0,24).map(((V,t)=>t)));const n=[0,...h(a.filter((V=>0!==V)))];v=24,n.forEach((t=>{d.push({t:"q",i:t}),p["q"+t]=h([0,1,2,3]);const e=V.FU[String(t+1)];e&&(d.push({t:"f",i:t,f:e,code:e.code}),p["f"+t]=h([0,1,2,3]))}))}(),A=[],m={},u=0,g("#s-quiz"),e("#q-card").innerHTML="",E(0)}function M(V){return Array.isArray(V)?V[Math.random()*V.length|0]:V}e("#b-prev").onclick=()=>{u>0&&(u--,E(1))};let w=null;function L(){e("#collect-n").textContent=c.size,e("#atlas-n").textContent=c.size+" / 30"}function $(V,t,e,a,n,s){return`<div class="tile torn ${a?"lock":""} ${s?"gold":""}" data-tear="1"><div class="m" data-code="${t}"></div><div class="cd">${a?"?":"CHAOS"===t?"???":V}</div><div class="nm">${a?n:e}</div></div>`}function q(){const a=e("#atlas");let n='<div class="atlas-sec">REGULAR · 常规人格 ×12</div><div class="grid">';t.forEach((t=>n+=$(t,t,V.P[t].name,!c.has(t),"还没测到"))),n+='</div><div class="atlas-sec">ULTIMATE FORM · 究极形态 ×12</div><div class="grid">',t.forEach((t=>n+=$(t+"·MAX",t,V.MAX[t][0],!c.has(t+"·MAX"),"据说有人纯度百分之百",!0))),n+='</div><div class="atlas-sec">SPECIAL EDITION · 隐藏款 ×6</div><div class="grid">',Object.keys(V.H).forEach((t=>n+=$(t,t,V.H[t].name,!c.has(t),V.H[t].hint))),a.innerHTML=n+"</div>",i(a),a.querySelectorAll(".tile").forEach((V=>V.onclick=()=>T(V.querySelector(".nm").textContent+(V.classList.contains("lock")?"":" ✓"),2600))),a.querySelectorAll(".m").forEach((V=>r(V,V.dataset.code))),a.querySelectorAll(".tile .cd").forEach((V=>{V.textContent.includes("·MAX")&&(V.innerHTML=V.textContent.replace("·MAX","<small style='font-size:8px;display:block'>MAX</small>"))})),L(),g("#s-atlas")}let x="#s-land";const C=(()=>{let V=null,t=null,e=null,a=o.get("ct_mute",!1);function n(){try{navigator.audioSession&&(navigator.audioSession.type="playback")}catch(V){}if(!window.__silent)try{const V=new Audio("data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjYwLjE2LjEwMAAAAAAAAAAAAAAA//NwwAAAAAAAAAAAAEluZm8AAAAPAAAACgAABMsAOzs7Ozs7Ozs7UVFRUVFRUVFRUWdnZ2dnZ2dnZ2d9fX19fX19fX19kpKSkpKSkpKSkqioqKioqKioqKi+vr6+vr6+vr6+1NTU1NTU1NTU1Orq6urq6urq6ur/////////////AAAAAExhdmM2MC4zMQAAAAAAAAAAAAAAACQDBgAAAAAAAATL+A9CeQAAAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsRbAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQMSkAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVTEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV//NCxKMAAANIAAAAAFVVVVVVVVVVVVVVVVVVVVVVVVVVTEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV//NAxKQAAANIAAAAAFVVVVVVVVVVVVVVVVVVVVVVVVVMQU1FMy4xMDBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX/80LEowAAA0gAAAAAVVVVVVVVVVVVVVVVVVVVVVVVVVVMQU1FMy4xMDBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX/80DEpAAAA0gAAAAAVVVVVVVVVVVVVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsSjAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQMSkAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV//NCxKMAAANIAAAAAFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV");V.setAttribute("playsinline",""),V.play().catch((()=>{})),window.__silent=V}catch(V){}if(V){"running"!==V.state&&V.resume();try{const t=V.createBuffer(1,1,22050),e=V.createBufferSource();e.buffer=t,e.connect(V.destination),e.start(0)}catch(V){}}}function s(){if(V)n();else try{V=new(window.AudioContext||window.webkitAudioContext),t=V.createGain(),t.gain.value=.55,t.connect(V.destination),e=V.createBuffer(1,1.5*V.sampleRate,V.sampleRate);const a=e.getChannelData(0);for(let V=0;V<a.length;V++)a[V]=2*Math.random()-1;n()}catch(t){V=null}}function c(){return!(a||!V)&&("suspended"===V.state&&V.resume(),!0)}function l(a,{type:n="bandpass",f:s=2e3,q:o=1,f2:l=null,vol:i=.5,att:r=.002,mod:d=0}={}){if(!c())return;const A=V.currentTime,u=V.createBufferSource();u.buffer=e;const m=V.createBiquadFilter();m.type=n,m.frequency.setValueAtTime(s,A),l&&m.frequency.exponentialRampToValueAtTime(l,A+a),m.Q.value=o;const p=V.createGain();if(p.gain.setValueAtTime(0,A),p.gain.linearRampToValueAtTime(i,A+r),p.gain.exponentialRampToValueAtTime(.001,A+a),d){const t=V.createOscillator(),e=V.createGain();t.frequency.value=d,e.gain.value=.6*i,t.connect(e),e.connect(p.gain),t.start(A),t.stop(A+a)}u.connect(m),m.connect(p),p.connect(t),u.start(A,.5*Math.random()),u.stop(A+a+.05)}function i(e,a,{type:n="sine",vol:s=.3,f2:o=null,delay:l=0}={}){if(!c())return;const i=V.currentTime+l,r=V.createOscillator(),d=V.createGain();r.type=n,r.frequency.setValueAtTime(e,i),o&&r.frequency.exponentialRampToValueAtTime(o,i+a),d.gain.setValueAtTime(0,i),d.gain.linearRampToValueAtTime(s,i+.005),d.gain.exponentialRampToValueAtTime(.001,i+a),r.connect(d),d.connect(t),r.start(i),r.stop(i+a+.05)}let r=.35,d=!1,A=null,u=null,m=null,p=null,f=!1;function v(){if(!a&&d){if(V&&"running"!==V.state&&V.resume(),m&&V){if(A)return;const[e,a]=function(V){const t=V.getChannelData(0);let e=0,a=t.length-1;for(;e<t.length&&Math.abs(t[e])<1e-4;)e++;for(;a>e&&Math.abs(t[a])<1e-4;)a--;return[e/V.sampleRate,a/V.sampleRate]}(m);return u=V.createGain(),u.gain.value=0,u.gain.linearRampToValueAtTime(r,V.currentTime+1.5),u.connect(t),A=V.createBufferSource(),A.buffer=m,A.loop=!0,A.loopStart=e,A.loopEnd=a,A.connect(u),void A.start(0,e)}p&&p.play().catch((()=>{}))}}return{init:s,bgmStart(){d=!0,V||s(),V&&(f||(f=!0,fetch("assets/bgm.mp3").then((V=>{if(!V.ok)throw 0;return V.arrayBuffer()})).then((t=>V.decodeAudioData(t))).then((V=>{m=V,v()})).catch((()=>{p=new Audio("assets/bgm.mp3"),p.loop=!0,p.volume=r,v()})))),v()},duck(t){r=t;try{u&&u.gain.linearRampToValueAtTime(t,V.currentTime+.6),p&&(p.volume=t)}catch(V){}},get muted(){return a},toggle(){return a=!a,o.set("ct_mute",a),a?function(){if(A){try{A.stop()}catch(V){}A=null}p&&p.pause()}():(s(),this.key(),v()),a},key(){l(.035,{f:2600+900*Math.random(),q:3,vol:.35}),i(180,.03,{type:"square",vol:.04})},carriage(){l(.18,{f:900,f2:2500,q:1,vol:.25}),l(.03,{f:3500,q:4,vol:.4})},ding(){i(2093,1.2,{vol:.22}),i(4186,.8,{vol:.06})},scribble(){l(.42,{f:1700,q:.9,vol:.09,att:.06,mod:7})},rip(){l(.24,{type:"lowpass",f:2600,f2:700,q:.5,vol:.12,att:.04}),l(.08,{f:3200,q:1.2,vol:.04,att:.01})},stamp(){i(130,.22,{f2:45,vol:.6}),l(.12,{type:"lowpass",f:700,vol:.6})},pat(){l(.06,{type:"lowpass",f:1500,vol:.45}),i(220,.05,{vol:.08})},extra(){[523,659,784,1046].forEach(((V,t)=>i(V,.22,{type:"sawtooth",vol:.07,delay:.09*t}))),l(.5,{f:3e3,q:.6,vol:.1,f2:6e3})}}})();e("#b-start").onclick=S;const R=V=>{const t=e("#b-mute");t.innerHTML=V?"<i>🔇</i>SOUND OFF":"<i>🔊</i>SOUND ON",t.classList.toggle("off",V)};R(C.muted),e("#b-mute").onclick=()=>R(C.toggle()),["touchend","click"].forEach((V=>document.addEventListener(V,(()=>C.init()),{passive:!0}))),e("#b-again").onclick=S,e("#b-atlas").onclick=()=>{x="#s-land",q()},e("#b-atlas2").onclick=()=>{x="#s-result",q()},e("#b-back").onclick=()=>g(x),e("#b-save").onclick=async function(){const V=e("#card");V.querySelectorAll("*").forEach((V=>{V.style.animation="none"})),V.querySelectorAll(".cnt").forEach((V=>V.textContent=V.dataset.to));const t=navigator.userAgent,a=/xhsdiscover/i.test(t),n=/MicroMessenger/i.test(t),s=/iPhone|iPad|Android/i.test(t),o="CollegeTabloid_"+(w?w.code.replace("+","plus"):"card")+".png";let c=null;const l=V=>{const t=e("#modal-img"),o=e("#modal-tip"),l=e("#b-share");l.style.display="none",V?(t.style.display="",t.src=V,o.innerHTML=a?"👆 长按图片保存<br><small>小红书里存不了的话：直接<b>截屏</b>，或点右上角 ··· 选「在浏览器打开」再保存</small>":n?"👆 长按图片 → 「保存图片」<br><small>也可以直接截屏分享</small>":s?"👆 长按图片 → 「存储到照片」<br><small>或直接截屏分享</small>":"已自动下载 ✓<br><small>没下载的话右键图片另存为</small>",c&&navigator.canShare&&navigator.canShare({files:[c]})&&!a&&!n&&(l.style.display="")):(t.style.display="none",o.innerHTML="这里没法一键保存 😢<br>请直接<b>截屏</b>结果卡分享"+(a?"<br><small>或点右上角 ··· 选「在浏览器打开」</small>":"")),e("#modal").classList.add("on")};if(!window.htmlToImage)return void l(null);T("正在印刷分享卡…",8e3);const i={pixelRatio:1080/V.offsetWidth,cacheBust:!1,backgroundColor:"#EFE6D6"};let r=null;try{await htmlToImage.toPng(V,i).catch((()=>{})),r=await htmlToImage.toPng(V,i)}catch(t){try{r=await htmlToImage.toPng(V,{...i,skipFonts:!0})}catch(V){r=null}}r&&r.length<5e3&&(r=null);try{if(r){const V=await(await fetch(r)).blob();c=new File([V],o,{type:"image/png"})}}catch(V){}if(e("#toast").classList.remove("on"),l(r),r&&!s)try{const V=document.createElement("a");V.href=r,V.download=o,document.body.appendChild(V),V.click(),V.remove()}catch(V){}e("#b-share").onclick=async()=>{try{await navigator.share({files:[c],title:"The College Tabloid"})}catch(V){}}},e("#b-close").onclick=()=>e("#modal").classList.remove("on"),document.querySelectorAll(".mascot[data-code]").forEach((V=>r(V,V.dataset.code))),i(),L()}();
 </script>
+<div style="position:fixed;right:6px;bottom:4px;font:9px monospace;opacity:.35;pointer-events:none;z-index:9">v10180018</div>
 </body>
 </html>
